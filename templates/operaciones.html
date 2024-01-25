@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1>Calcular</h1>
+<form action="/resultado" , method="POST">
+    <label for="n1" class="form-label">Número 1:</label>
+    <input type="text" class="form-control" name="n1" id="n1"><br>
+    <label for="n2">Número 2:</label>
+    <input type="text" class="form-control" name="n2" id="n2"><br>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="operacion" id="suma" value="suma">
+        <label class="form-check-label" for="suma">Suma</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="operacion" id="resta" value="resta">
+        <label class="form-check-label" for="resta">Resta</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="operacion" id="multiplicacion" value="multiplicacion">
+        <label class="form-check-label" for="multipliacion">Multiplicacion</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="operacion" id="division" value="division">
+        <label class="form-check-label" for="division">Division</label>
+    </div>
+
+    <input type="submit">
+</form>
+{% endblock %}
