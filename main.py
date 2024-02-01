@@ -1,10 +1,41 @@
+import math
 from flask import Flask, render_template, request
+import forms
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("operaciones.html")
+    return render_template("layout.html")
+
+
+## Distancia entre dos puntos
+@app.route("/distancia", methods=["GET", "POST"])
+def distancia():
+    coord_x1 = ""
+    coord_x2 = ""
+    coord_y1 = ""
+    coord_y2 = ""
+    resultado = ""
+    distancia_class = forms.DistanciaForm(request.form)
+    if request.method == "POST":
+        coord_x1 = distancia_class.x1.data
+        coord_x2 = distancia_class.x2.data
+        coord_y1 = distancia_class.y1.data
+        coord_y2 = distancia_class.y2.data
+        resultado = math.sqrt((pow((coord_x2 - coord_x1), 2) + pow((coord_y2 - coord_y1), 2)))
+        
+        print('x1: {}, y1: {}, x2: {}, y2: {}, resultado = {}'.format(coord_x1, coord_y1, coord_x2, coord_y2, resultado))
+        
+    return render_template(
+        "distancia.html", 
+        form = distancia_class, 
+        x1 = coord_x1,
+        x2 = coord_x2,
+        y1 = coord_y1,
+        y2 = coord_y2,
+        resultado = resultado
+    )
 
 @app.route("/operaciones")
 def operaciones():

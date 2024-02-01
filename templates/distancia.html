@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% import "_macros.html" as macros %}
+<h1>Cálculo de distancia entre dos puntos</h1>
+<form action="" method="POST">
+    <div class="row g-4">
+        <div class="col-md-3">
+            {{
+                macros.camposNuevos(
+                    form.x1,
+                    class='form-control'
+                )
+            }}
+        </div>
+
+        <div class="col-md-3">
+            {{
+                macros.camposNuevos(
+                    form.y1,
+                    class='form-control'
+                )
+            }}
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            {{
+                macros.camposNuevos(
+                    form.x2,
+                    class='form-control'
+                )
+            }}
+        </div>
+
+        <div class="col-md-3">
+            {{
+                macros.camposNuevos(
+                    form.y2,
+                    class='form-control'
+                )
+            }}
+        </div>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-secondary">
+            Calcular
+        </button>
+    </div>
+</form>
+
+<div class="row g-4">
+    <p>Resultado = {{resultado}}</p>
+</div>
+{% endblock %}
