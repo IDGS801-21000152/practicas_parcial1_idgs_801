@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% import "_macros.html" as macros %}
+<h1>Calculo de resistencias</h1>
+<form action="/resistencias" method="post">
+    <div class="row g-4 m-1">
+        <div class="col-md-3">
+            <select class="form-select" aria-label="Default select example" name="primerBanda" id="primerBanda">
+                <option selected disabled>Banda 1</option>
+                <option value="negro">Negro</option>
+                <option value="marron">Marrón</option>
+                <option value="rojo">Rojo</option>
+                <option value="naranja">Naranja</option>
+                <option value="amarillo">Amarillo</option>
+                <option value="verde">Verde</option>
+                <option value="azul">Azúl</option>
+                <option value="violeta">Violeta</option>
+                <option value="gris">Gris</option>
+                <option value="blanco">Blanco</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select" aria-label="Default select example" name="segundaBanda" id="segundaBanda">
+                <option selected disabled>Banda 2</option>
+                <option value="negro">Negro</option>
+                <option value="marron">Marrón</option>
+                <option value="rojo">Rojo</option>
+                <option value="naranja">Naranja</option>
+                <option value="amarillo">Amarillo</option>
+                <option value="verde">Verde</option>
+                <option value="azul">Azúl</option>
+                <option value="violeta">Violeta</option>
+                <option value="gris">Gris</option>
+                <option value="blanco">Blanco</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select" aria-label="Default select example" name="tercerBanda" id="tercerBanda">
+                <option selected disabled>Multiplicador</option>
+                <option value="negro">Negro</option>
+                <option value="marron">Marrón</option>
+                <option value="rojo">Rojo</option>
+                <option value="naranja">Naranja</option>
+                <option value="amarillo">Amarillo</option>
+                <option value="verde">Verde</option>
+                <option value="azul">Azúl</option>
+                <option value="violeta">Violeta</option>
+                <option value="gris">Gris</option>
+                <option value="blanco">Blanco</option>
+            </select>
+        </div>
+    </div>
+    <div class="row g-4 m-2">
+        <div class="col-md-3">
+            <h2>Tolerancia:</h2>
+            <div class="form-check form-check-inline">
+                <input type="radio" name="tolerancia" id="tolerancia" class="form-check-input" value="plateado">
+                <label for="plateado" class="form-check-label">Plateado</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" name="tolerancia" id="tolerancia" class="form-check-input" value="dorado">
+                <label for="dorado" class="form-check-label">Dorado</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="submit">
+        </div>
+    </div>
+</form>
+
+<div class="tabla">
+    <div class="encabezado">
+        <div class="item_encabezado"><a href="#" id="banda1" class="enlace">Banda 1</a></div>
+        <div class="item_encabezado"><a href="#" id="banda2" class="enlace">Banda 2</a></div>
+        <div class="item_encabezado"><a href="#" id="Multiplicador" class="enlace">Multiplicador</a></div>
+        <div class="item_encabezado"><a href="#" id="Tolerancia" class="enlace">Tolerancia</a></div>
+        <div class="item_encabezado"><a href="#" id="Valor" class="enlace">Valor</a></div>
+        <div class="item_encabezado"><a href="#" id="Valor Mínimo" class="enlace">Valor Minimo</a></div>
+        <div class="item_encabezado"><a href="#" id="Valor Máximo" class="enlace">Valor Máximo</a></div>
+    </div>
+    <div class="contenido">
+        <div class="renglon">
+            <div class="dato {{primerBanda}}">{{primerBanda}}</div>
+            <div class="dato {{segundaBanda}}">{{segundaBanda}}</div>
+            <div class="dato {{tercerBanda}}">{{tercerBanda}}</div>
+            <div class="dato {{tolerancia}}">{{tolerancia}}</div>
+            <div class="dato" style="color: black;">{{valor}}</div>
+            <div class="dato" style="color: black;">{{valorMinimo}}</div>
+            <div class="dato" style="color: black;">{{valorMaximo}}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
