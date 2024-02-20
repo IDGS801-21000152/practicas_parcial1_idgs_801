@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% import '_macros.html' as macro %}
+<h1>Hola diccionario :D</h1>
+<form id="addWordsForm" method="post">
+    <div class="row g-4 align-items-middle">
+        <div class="col-md-3">
+            {{
+                macro.camposNuevos(
+                    form.palabraIngles,
+                    class='form-control text-info',
+                    placeholder='ingresar palabra'
+                )
+            }}
+        </div>
+        <div class="col-md-3">
+            {{
+                macro.camposNuevos(
+                    form.palabraEspaniol,
+                    class='form-control text-success',
+                    placeholder='ingresar palabra'
+                )
+            }}
+        </div>
+    </div>
+    <div class="row mt-1 mb-4 g-4 align-items-middle">
+        <div class="col sm-6">
+            <button type="submit" name="add_words" class="btn btn-warning">Guardar</button>
+        </div>
+    </div>
+</form>
+<h2>Idioma a traducir:</h2>
+<form id="translateWordForm" method="post">
+        {% for subfield in form.idioma  %}
+        <div class="form-check form-check-inline">
+            <input type="radio" name="{{ subfield.name }}" id="{{ subfield.id }}" class="form-check-input" value="{{ subfield._value() }}">
+            <label for="{{ subfield.id }}" class="form-check-label">{{ subfield.label.text }} </label>
+        </div>
+        {% endfor %}
+        <div class="row-g4-align-items-middle">
+            <div class="col-md-3">
+                {{
+                    macro.camposNuevos(
+                        form.palabraABuscar,
+                        class='form-control',
+                        placeholder='ingresar palabra'
+                    )
+                }}
+            </div>
+        </div>
+        <div class="row g-4 align-items-middle">
+            <div class="col sm-6">
+                <button type="submit" name="translate_word" class="btn btn-primary">traducir</button>
+            </div>
+        </div>
+</form>
+<div class="col-sm-10 mt-3">
+    <input type="text" readonly class="form-control-plaintext bg-body-sendary" placeholder="resultado:" id="resultado" value={{resultado}}>
+</div>
+<script>
+    // Limpiar campos del formulario "addWordsForm"
+    document.getElementById("addWordsForm").addEventListener("change", function() {
+        document.getElementById("translateWordForm").reset();
+    });
+
+    // Limpiar campos del formulario "translateWordForm"
+    document.getElementById("translateWordForm").addEventListener("change", function() {
+        document.getElementById("addWordsForm").reset();
+    });
+</script>
+{% endblock %}
